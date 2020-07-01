@@ -77,6 +77,6 @@ def remove_hyphens(list_of_strings):
 
 if __name__ == "__main__":
     with open('data.json', 'r') as fp:
-        data = json.loads(json.load(fp))
+        data = json.load(fp)
     decide_frames(data)
     #print(remove_hyphens(data["transcript"].splitlines()))
