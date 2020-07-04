@@ -9,7 +9,7 @@ def align_process(path_to_audio, lyrics_file):
         'transcript': ('words.txt', open(lyrics_file, 'rb')),
     }
     response = requests.post(
-        'http://localhost:8765/transcriptions', params=params, files=files)
+        'http://35.193.155.100:32769/transcriptions', params=params, files=files)
     
     return response
 
