@@ -23,6 +23,7 @@ def align_process(path_to_audio, lyrics_file):
 
     return result.to_json(indent=2)
 
+#Testing...
 if __name__ == "__main__":
     # sample test
     result = align_process("audio.mp3", "words.txt")

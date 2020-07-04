@@ -1,5 +1,5 @@
-#Pending part
 import json
+
 def decide_frames(aligned_data):
   transcript = remove_hyphens(aligned_data["transcript"].splitlines())
   aligned_words = aligned_data["words"]
@@ -63,6 +63,39 @@ def decide_frames(aligned_data):
   # print("\n")
   # print("og_status_of_fal: ", og_status_of_fal)
 
+  dur_bank = calc_duration(fal_bank, aligned_words)
+  start_sec = aligned_words[0]["start"]
+  
+  video_data = [{"line": " ", "duration": start_sec}]
+  for fal, dur in zip(fal_bank, dur_bank):
+    ln = create_line(fal, aligned_words)
+    video_data.append({
+      "line": ln,
+      "duration": dur
+      })
+
+  # print(video_data)
+  return video_data
+  print("Processing....")
+  
+
+def create_line(fal, aligned_words):
+  f, l = fal
+  line = []
+  while f <= l:
+    line.append(aligned_words[f]["word"])
+    f = f+1
+  return ' '.join(line)
+
+def calc_duration(fal_bank, aligned_words):
+  dur_bank = []
+  for fal in fal_bank:
+    first, last = fal
+    if last != len(aligned_words)-1:
+      dur_bank.append(aligned_words[last+1]["start"] - aligned_words[first]["start"]) 
+    else:
+      dur_bank.append(aligned_words[last]["end"] - aligned_words[first]["start"]) 
+  return dur_bank
 
 def false_false(status_of_fal, fal_bank):
   while (False, False) in status_of_fal:
