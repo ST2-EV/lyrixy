@@ -52,7 +52,17 @@ def decide_frames(aligned_data):
   print("\n")
   print("status of fal: ", len(status_of_fal))
   print("fal bank: ", len(fal_bank))
- 
+  # print("\n")
+  # print("aligned_words: ", len(aligned_words))
+  # print("\n")
+  # print("fal_bank: ", fal_bank)
+  # print("\n")
+  # print("og_fal_bank: ",og_fal_bank)
+  # print("\n")
+  # print("status_of_fal: ", status_of_fal)
+  # print("\n")
+  # print("og_status_of_fal: ", og_status_of_fal)
+
 
 def false_false(status_of_fal, fal_bank):
   while (False, False) in status_of_fal:
@@ -87,12 +97,15 @@ def shift_left(current_string_number, status_of_fal, fal_bank):
   while counter != -1:
     counter = counter -1
     if status_of_fal[counter] == (True, False) or status_of_fal[counter] == (True, True):
+      # print("shift_left: ", status_of_fal[counter])
+      # print(current_string_number)
       fixed_status = merge(status_of_fal[counter], status_of_fal[current_string_number])
-      status_of_fal = status_of_fal[0:counter] + [fixed_status] + status_of_fal[(current_string_number + 1):-1]
+      status_of_fal = status_of_fal[0:counter] + [fixed_status] + status_of_fal[(current_string_number + 1):]
 
       fixed_fal = merge(fal_bank[counter], fal_bank[current_string_number])
-      fal_bank = fal_bank[0:counter] + [fixed_fal] + fal_bank[(current_string_number + 1):-1]
+      fal_bank = fal_bank[0:counter] + [fixed_fal] + fal_bank[(current_string_number + 1):]
       fn_res = True
+      # print(fal_bank)
       return status_of_fal, fal_bank, fn_res, counter
   fn_res = False
   return status_of_fal, fal_bank, fn_res, -1
@@ -102,12 +115,15 @@ def shift_right(current_string_number, status_of_fal, fal_bank):
   while counter != len(status_of_fal) + 1:
       counter = counter + 1
       if status_of_fal[counter] == (False, True) or status_of_fal[counter] == (True, True):
+        # print("shift_right: ", status_of_fal[counter])
+        # print(current_string_number)
         fixed_status = merge(status_of_fal[current_string_number], status_of_fal[counter])
-        status_of_fal = status_of_fal[0:current_string_number] + [fixed_status] + status_of_fal[(counter + 1):-1]
+        status_of_fal = status_of_fal[0:current_string_number] + [fixed_status] + status_of_fal[(counter + 1):]
 
         fixed_fal = merge(fal_bank[current_string_number], fal_bank[counter])
-        fal_bank = fal_bank[0:current_string_number] + [fixed_fal] + fal_bank[(counter + 1):-1]
+        fal_bank = fal_bank[0:current_string_number] + [fixed_fal] + fal_bank[(counter + 1):]
         fn_res = True
+        # print(fal_bank)
         return status_of_fal, fal_bank, fn_res, current_string_number
   fn_res = False
   return status_of_fal, fal_bank, fn_res, -1
