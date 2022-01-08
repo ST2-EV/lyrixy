@@ -1,5 +1,5 @@
 # lyrixy
-
+[**Genenrated example from just audio file and lyrics text file**](https://drive.google.com/file/d/1TcVdFx3n8ni5kF1_t8kC8XbCB5cY2nj-/view?usp=sharing)
 * ```force_align.py``` runs gentle and gives a dictionary.
 * ```data.json``` is a sample output from force_align.py with the song MIDDLE CHILD - J.COLE, use this to test and iterate for the file below.
 * ```extract_proper_frames.py``` should create split the  lyrics into sentences that have start stop durations in a way tolerating all te words that have not been recognized.
